@@ -1,4 +1,5 @@
 import React from "react";
+import useStore from "@/zustand/store-zustand";
 
 export default function ZustandPage() {
   return (
