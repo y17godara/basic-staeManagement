@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useCallback } from 'react';
 import { createContext, useContextSelector } from 'use-context-selector';
 
 const useStore = () => {
@@ -8,10 +8,10 @@ const useStore = () => {
     return {
         user,
         cartCount,
-        login: () => setUser("John"),
-        logout: () => setUser(""),
-        addToCart: () => setCartCount(cartCount + 1),
-        resetCart: () => setCartCount(0),
+        login: () => useCallback(setUser("John"), []),
+        logout: () => useCallback(setUser(""), []),
+        addToCart: () => useCallback(setCartCount(cartCount + 1), [cartCount]),
+        resetCart: () => useCallback(setCartCount(0), [cartCount]),
     };
 }
 
