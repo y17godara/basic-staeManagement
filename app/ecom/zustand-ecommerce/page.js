@@ -1,6 +1,14 @@
 "use client";
 import React from "react";
-import useStore from "@/zustand/store-zustand";
+import {
+  useLogin,
+  useLogout,
+  useAddToCart,
+  useResetCart,
+  useUser,
+  useCartCount
+}
+from "@/zustand/store-zustand";
 
 export default function ZustandPage() {
   return (
@@ -19,8 +27,8 @@ export default function ZustandPage() {
 }
 
 const LoginSection = () => {
-  const login = useStore((state) => state.login);
-  const logout = useStore((state) => state.logout);
+  const login = useLogin();
+  const logout = useLogout();
   return (
     <>
       <div>
@@ -35,8 +43,8 @@ const LoginSection = () => {
 };
 
 const CartSection = () => {
-  const addToCart = useStore((state) => state.addToCart);
-  const resetCart = useStore((state) => state.resetCart);
+  const addToCart = useAddToCart();
+  const resetCart = useResetCart();
   return (
     <>
       <div>
@@ -51,11 +59,11 @@ const CartSection = () => {
 };
 
 const DisplayCart = () => {
-  const cartCount = useStore((state) => state.cartCount);
+  const cartCount = useCartCount();
   return <div className="bg-gray-200 m-4 text-md px-8 py-2 rounded-md">Cart: {cartCount}</div>;
 };
 
 const DisplayUser = () => {
-  const user = useStore((state) => state.user);
+  const user = useUser();
   return <div className="bg-gray-200 m-4 text-md px-8 py-2 rounded-md">User: {user}</div>;
 };

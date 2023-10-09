@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 const useStore = create((set) => ({
     user: "",
@@ -10,3 +10,10 @@ const useStore = create((set) => ({
 }));
 
 export default useStore;
+
+export const useLogin = () => useStore((state) => state.login);
+export const useLogout = () => useStore((state) => state.logout);
+export const useAddToCart = () => useStore((state) => state.addToCart);
+export const useResetCart = () => useStore((state) => state.resetCart);
+export const useCartCount = () => useStore((state) => state.cartCount);
+export const useUser = () => useStore((state) => state.user);
