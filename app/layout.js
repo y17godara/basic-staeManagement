@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { accountReducer, bonusReducer } from "../redux/reducers";
+import { accountReducer, bonusReducer } from "../redux/1/reducers";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
