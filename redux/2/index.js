@@ -25,21 +25,30 @@ function buyCake() {
 }
 
 // Reducer
+const initialCashState = {
+  cash: 20,
+};
+
 const initialLollypopState = {
   numOfLollypops: 10,
+  cash: initialCashState.cash,
 };
 
 const initialCakeState = {
   numOfCakes: 20,
+  cash: initialCashState.cash,
 };
 
 const lollypopReducer = (state = initialLollypopState, action) => {
   switch (action.type) {
     case BUY_LOLLYPOP:
-      return {
-        ...state,
-        numOfLollypops: state.numOfLollypops - 1,
-      };
+      if (state.cash >= 2) {
+        return {
+          ...state,
+          numOfLollypops: state.numOfLollypops - 1,
+          cash: state.cash - 2,
+        };
+      }
     default:
       return state;
   }
@@ -48,10 +57,13 @@ const lollypopReducer = (state = initialLollypopState, action) => {
 const cakeReducer = (state = initialCakeState, action) => {
   switch (action.type) {
     case BUY_CAKE:
-      return {
-        ...state,
-        numOfCakes: state.numOfCakes - 1,
-      };
+      if (state.cash >= 5) {
+        return {
+          ...state,
+          numOfCakes: state.numOfCakes - 1,
+          cash: state.cash - 5,
+        };
+      }
     default:
       return state;
   }
@@ -62,7 +74,6 @@ const rootReducer = combineReducers({
   lollypop: lollypopReducer,
   cake: cakeReducer,
 });
-
 
 // Store
 const store = createStore(rootReducer, applyMiddleware(logger));
