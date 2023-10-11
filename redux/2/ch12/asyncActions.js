@@ -9,6 +9,23 @@ const applyMiddleware = redux.applyMiddleware;
 const thunkMiddleware = thunk.default;
 const logger = reduxLogger.createLogger();
 
+// fetch users
+const fetchUsers = () => {
+    return function (dispatch) {
+        dispatch(fetchUsersRequest());
+        axios.get('https://jsonplaceholder.typicode.com/users')
+            .then((response) => {
+                // response.data is the users
+                const users = response.data.map((user) => user.id);
+                dispatch(fetchUsersSuccess(users));
+            })
+            .catch((error) => {
+                // error.message is the error message
+                dispatch(fetchUsersFailure(error.message));
+            });
+    };
+};
+
 // Initial state
 const initialState = {
   loading: false,
@@ -69,10 +86,11 @@ const userReducer = (state = initialState, action) => {
 
 const rootReducer = combineReducers({
     user: userReducer,
-    // post: postReducer,
-    // comment: commentReducer,
 });
 
 // Store
-const store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 console.log("Initial state", store.getState());
+
+store.subscribe(() => { console.log("Updated state", store.getState()) });
+store.dispatch(fetchUsers());
