@@ -6,7 +6,9 @@ function App() {
   return (
     <>
       <Provider store={store}>
+        <div className="App">
         <CakeContainer />
+        </div>
       </Provider>
     </>
   );

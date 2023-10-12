@@ -1,4 +1,4 @@
-import { initialState, BUY_CAKE } from './cakeTypes'
+import { initialState, BUY_CAKE } from './cakeType'
 
 const cakeReducer = (state = initialState, action) => {
     switch(action.type) {
