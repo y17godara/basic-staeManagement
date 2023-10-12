@@ -1,30 +1,15 @@
-import { connect } from "react-redux";
-import { buyCake } from "../redux";
-import PropTypes from 'prop-types';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-function CakeContainer(props) {
+function HookCakeContainer() {
+    const numOfCakes = useSelector(state => state.numOfCakes);
     return (
         <div>
-            <h2>Number of cakes {props.numOfCakes}</h2>
+            <h2>Number of cakes- {numOfCakes}</h2>
             <button>Buy Cake</button>
         </div>
     );
 }
 
-CakeContainer.propTypes = {
-    numOfCakes: PropTypes.number.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  return {
-    numOfCakes: state.numOfCakes,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    buyCake: () => dispatch(buyCake()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CakeContainer);
+export default HookCakeContainer;
