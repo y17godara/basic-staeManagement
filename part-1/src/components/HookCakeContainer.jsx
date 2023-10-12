@@ -9,7 +9,7 @@ function HookCakeContainer() {
     const dispatch = useDispatch();
     return (
         <div>
-            <h2>Number of cakes- {numOfCakes}</h2>
+            <h2>Number of cakes - {numOfCakes}</h2>
             <button onClick={() => dispatch({ type: BUY_CAKE })} >Buy Cake</button>
         </div>
     );
