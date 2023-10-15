@@ -1,0 +1,39 @@
+import redux from "redux";
+const ORDER_CAKE = "ORDER_CAKE";
+
+function orderCake() {
+  return {
+    type: ORDER_CAKE,
+    info: "Ordering cake",
+    quantity: 1,
+  };
+}
+
+const initialState = {
+  numOfCakes: 10,
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ORDER_CAKE:
+      return {
+        ...state,
+        numOfCakes: state.numOfCakes - action.quantity,
+      };
+    default:
+      return state;
+  }
+};
+
+const store = redux.createStore(reducer); // store
+
+console.log("Initial state", store.getState());
+
+const unsubscribe = store.subscribe(() =>
+  console.log("Updated state", store.getState())
+);
+
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+
+unsubscribe();
