@@ -1,5 +1,11 @@
 import redux from "redux";
+
+const initialState = {
+  numOfCakes: 10,
+};
+
 const ORDER_CAKE = "ORDER_CAKE";
+const RESTOCK_CAKE = "RESTOCK_CAKE";
 
 function orderCake() {
   return {
@@ -9,9 +15,13 @@ function orderCake() {
   };
 }
 
-const initialState = {
-  numOfCakes: 10,
-};
+function restockCake(qty) {
+  return {
+    type: RESTOCK_CAKE,
+    info: "Restocking cake",
+    quantity: qty,
+  }
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,6 +30,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         numOfCakes: state.numOfCakes - action.quantity,
       };
+    case RESTOCK_CAKE:
+      return {
+        ...state,
+        numOfCakes: state.numOfCakes + action.quantity,
+      }
     default:
       return state;
   }
@@ -35,5 +50,6 @@ const unsubscribe = store.subscribe(() =>
 
 store.dispatch(orderCake());
 store.dispatch(orderCake());
+store.dispatch(restockCake(5));
 
 unsubscribe();
