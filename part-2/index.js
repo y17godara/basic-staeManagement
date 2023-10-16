@@ -1,4 +1,5 @@
 import redux from "redux";
+const bindActionCreators = redux.bindActionCreators;
 
 const initialState = {
   numOfCakes: 10,
@@ -48,8 +49,13 @@ const unsubscribe = store.subscribe(() =>
   console.log("Updated state", store.getState())
 );
 
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(restockCake(5));
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(restockCake(5));
+
+const act = bindActionCreators({ orderCake, restockCake }, store.dispatch); // action
+act.orderCake();
+act.orderCake();
+act.restockCake(5);
 
 unsubscribe();
