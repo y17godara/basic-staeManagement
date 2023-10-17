@@ -1,8 +1,9 @@
 import redux from "redux";
+import { produce } from "immer";
+
 const createStore = redux.createStore;
 const bindActionCreators = redux.bindActionCreators;
 const combineReducers = redux.combineReducers;
-
 
 const initialState = {
   name: "John",
@@ -24,14 +25,18 @@ const updateStreet = (street) => {
 
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
+    // case STREET_UPDATE:
+    //   return {
+    //     ...state,
+    //     address: {
+    //       ...state.address,
+    //       street: action.payload,
+    //     },
+    //   };
     case STREET_UPDATE:
-      return {
-        ...state,
-        address: {
-          ...state.address,
-          street: action.payload,
-        },
-      };
+      return produce(state, (draftState) => {
+        draftState.address.street = action.payload;
+      });
     default:
       return state;
   }
