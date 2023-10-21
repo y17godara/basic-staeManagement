@@ -1,13 +1,15 @@
-// import { useState } from 'react'
+import DisplayTodo from "./components/DisplayTodo";
+import AddTodo from "./components/AddTodo";
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
     <>
-      Hello World
+      <div id="App">
+        <DisplayTodo />
+        <AddTodo />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
