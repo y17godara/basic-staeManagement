@@ -1,24 +1,10 @@
 import { postAdded, postUpdated, postDeleted } from "./postsSlice";
 import { useSelector, useDispatch } from "react-redux";
-import React, { useState, useEffect } from "react";
+
 
 const Posts = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
-
-  const [newPostDetails, setNewPostDetails] = useState({
-    title: "",
-    content: "",
-  });
-
-  const newPostDetailsChanged = (e) => {
-    setNewPostDetails({ ...newPostDetails, [e.target.id]: e.target.value });
-  }
-
-  useEffect(() => {
-    console.log("New post details: ", newPostDetails);
-  }, [newPostDetails]);
-
   return (
     <section>
       <h2>Posts</h2>
@@ -50,6 +36,16 @@ const Posts = () => {
             </button>
           </article>
         ))}
+      </div>
+
+      <div>
+        <h2>Update Post</h2>
+        <form>
+          <label htmlFor="postTitle">Post Title:</label>
+          <input type="text" id="postTitle" name="postTitle" />
+          <label htmlFor="postContent">Content:</label>
+          <textarea id="postContent" name="postContent" />
+        </form>
       </div>
 
       <div>
