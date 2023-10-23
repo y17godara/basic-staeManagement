@@ -1,12 +1,11 @@
 import PostList from "./PostList";
-import PostAdd from "./PostAdd.jsx";
-
+import PostAdd from "./PostAdd";
 
 const Posts = () => {
   return (
     <section>
       <PostList />
-      
+
       <PostAdd />
     </section>
   );

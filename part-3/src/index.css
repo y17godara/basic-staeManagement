@@ -117,4 +117,10 @@ button:focus-visible {
   line-height: 1.5;
   border: 2px solid white;
   border-radius: 20px;
+  padding: 20px;
+}
+
+.button {
+  color: white;
+  margin: 2px;;
 }

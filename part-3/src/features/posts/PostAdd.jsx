@@ -30,7 +30,7 @@ const PostAdd = () => {
   };
   return (
     <section>
-      <h2>PostAdd</h2>
+      <h2>Post Add</h2>
       {/* Form */}
       <form onSubmit={handleSubmit}>
         <label htmlFor="postTitle">Post Title:</label>
@@ -48,7 +48,7 @@ const PostAdd = () => {
           value={content}
           onChange={onContentChanged}
         />
-        <button type="submit">Save Post</button>
+        <button className="button" type="submit">Save Post</button>
       </form>
     </section>
   );
