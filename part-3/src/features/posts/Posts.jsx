@@ -4,9 +4,9 @@ import PostAdd from "./PostAdd";
 const Posts = () => {
   return (
     <section>
+      <PostAdd />
       <PostList />
 
-      <PostAdd />
     </section>
   );
 };
